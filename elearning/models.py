@@ -1,17 +1,32 @@
 from django.db import models
 
 
+class Student(models.Model):
+    name = models.CharField(max_length=200)
+
+
 class Course(models.Model):
     name = models.CharField(max_length=200)
-    aproval_score = models.IntegerField(max_length=3)
-    is_aproved = models.BooleanField()
+    approval_score = models.IntegerField(max_length=3)
+
+
+class StudentCourse(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    is_approved = models.BooleanField(default=False)
 
 
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
-    is_passed = models.BooleanField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    approval_score = models.IntegerField(max_length=3)
 
+
+class StudentLesson(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    score = models.IntegerField(max_length=3, default=0)
+    is_passed = models.BooleanField(default=False)
 
 class Question(models.Model):
     BOOLEAN = 'BL'
