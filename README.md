@@ -7,17 +7,20 @@ Developed using:
 - Django==3.0.3
 - Sqlite3 db for convenience
 
-## Project setup
-
-
+## Setup
 #### On an active env with python>=3.6:
 
-1. Install requirements
+1. Install requirements:
 ```console
 $ pip install -r requirements.txt
 ```
 
-2. Run migrations
+2. Run migrations:
 ```console
 $ python manage.py migrate
+```
+
+## Run
+```console
+$ python manage.py runserver 
 ```
