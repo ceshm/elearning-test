@@ -7,7 +7,11 @@ class Student(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=200)
-    approval_score = models.IntegerField(max_length=3)
+    approval_score = models.IntegerField()
+    dependencies = models.ManyToManyField("Course", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class StudentCourse(models.Model):
@@ -19,13 +23,17 @@ class StudentCourse(models.Model):
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    approval_score = models.IntegerField(max_length=3)
+    approval_score = models.IntegerField()
+    dependencies = models.ManyToManyField("Lesson", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class StudentLesson(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    score = models.IntegerField(max_length=3, default=0)
+    score = models.IntegerField(default=0)
     is_passed = models.BooleanField(default=False)
 
 
@@ -44,3 +52,6 @@ class Question(models.Model):
     score = models.IntegerField(max_length=3)
     type = models.CharField(max_length=2, choices=QUESTION_TYPE_CHOICES, default=BOOLEAN)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.text
