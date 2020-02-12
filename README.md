@@ -24,3 +24,12 @@ $ python manage.py migrate
 ```console
 $ python manage.py runserver 
 ```
+
+## WIP/todo
+
+For ease of implementation and rapid prototyping, 
+this first version omitted the following core features/Business Rules:
+
+- The courses are correlative with previous ones
+- The lessons are correlative with previous ones
+- Auth strategy
