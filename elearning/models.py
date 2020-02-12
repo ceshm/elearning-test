@@ -28,6 +28,7 @@ class StudentLesson(models.Model):
     score = models.IntegerField(max_length=3, default=0)
     is_passed = models.BooleanField(default=False)
 
+
 class Question(models.Model):
     BOOLEAN = 'BL'
     MULTI_1 = 'M1'
