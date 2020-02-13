@@ -1,6 +1,11 @@
 from django.http import JsonResponse
-from rest_framework import viewsets
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from courses.models import Course
+from courses.serializers import CourseSerializer
 
 
 def index(request):
@@ -8,7 +13,21 @@ def index(request):
 
 
 def get_student_courses(request):
+
+
     return JsonResponse({'foo': 'bar'})
+
+
+@api_view(['GET',])
+def get_student_courses_2(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data)
+
 
 def get_course_lessons(request):
     return JsonResponse({'foo': 'bar'})
@@ -19,45 +38,3 @@ def get_lesson_details(request):
 def take_a_lesson(request):
     return JsonResponse({'foo': 'bar'})
 
-
-# Course CRUD
-def create_course(request):
-    return JsonResponse({'foo': 'bar'})
-
-def read_course(request):
-    return JsonResponse({'foo': 'bar'})
-
-def update_course(request):
-    return JsonResponse({'foo': 'bar'})
-
-def delete_course(request):
-    return JsonResponse({'foo': 'bar'})
-
-
-# Lesson CRUD
-def create_lesson(request):
-    return JsonResponse({'foo': 'bar'})
-
-def read_lesson(request):
-    return JsonResponse({'foo': 'bar'})
-
-def update_lesson(request):
-    return JsonResponse({'foo': 'bar'})
-
-def delete_lesson(request):
-    return JsonResponse({'foo': 'bar'})
-
-
-# Question CRUD
-
-def create_question(request):
-    return JsonResponse({'foo': 'bar'})
-
-def read_question(request):
-    return JsonResponse({'foo': 'bar'})
-
-def update_question(request):
-    return JsonResponse({'foo': 'bar'})
-
-def delete_question(request):
-    return JsonResponse({'foo': 'bar'})

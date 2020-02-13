@@ -5,9 +5,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', views.index, name='index'),
-
     path('courses-api/', include('courses.urls')),
 
+    path('student-courses/', views.get_student_courses_2)
 ]
