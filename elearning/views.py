@@ -1,3 +1,4 @@
+import socket
 from django.http import JsonResponse
 
 from rest_framework import status
@@ -9,7 +10,14 @@ from courses.serializers import CourseSerializer, LessonSerializer, QuestionSeri
 
 
 def index(request):
-    return JsonResponse({'foo': 'https://g.co'})
+    host = request.build_absolute_uri('/')
+    return JsonResponse({
+        'List all available student courses': host+'courses/',
+        'List all lessons of a course': host+'lessons/',
+        'List all questions of a lesson': host+'questions/',
+        'Take a lesson': host+'take-lesson/',
+        'Main Entities CRUD base': host+'courses-api/'
+    })
 
 
 @api_view(['GET'])
