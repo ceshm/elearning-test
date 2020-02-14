@@ -1,8 +1,5 @@
+from django.contrib.auth.models import User
 from django.db import models
-
-
-class Student(models.Model):
-    name = models.CharField(max_length=200)
 
 
 class Course(models.Model):
@@ -15,7 +12,7 @@ class Course(models.Model):
 
 
 class StudentCourse(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     is_approved = models.BooleanField(default=False)
 
@@ -31,7 +28,7 @@ class Lesson(models.Model):
 
 
 class StudentLesson(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     is_passed = models.BooleanField(default=False)

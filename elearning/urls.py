@@ -8,5 +8,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('courses-api/', include('courses.urls')),
 
-    path('student-courses/', views.get_student_courses_2)
+    path('courses/', views.get_student_courses),
+    path('lessons/', views.get_course_lessons),
+    path('questions/', views.get_lesson_details),
+
+    path('take-lesson/', views.take_lesson)
 ]
